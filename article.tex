@@ -1,0 +1,47 @@
+%!TEX program = xelatex
+% 完整编译: xelatex -> bibtex -> xelatex -> xelatex
+\documentclass[lang=cn,11pt,a4paper,cite=number, win10]{etpaper}
+
+
+
+\title{中文论文题目}
+\author{高凯}
+\institute{（天津大学电气自动化与信息工程学院，天津~300072）}
+
+\date{\zhtoday}
+
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+使用 Word 写中文论文的主要问题是不容易做到版本控制。为此，改写简单的中文期刊论文的模板，建议以后使用。
+此模板并没有修改任何默认的 \LaTeX{} 命令或者环境，以保证代码的可复用性，以方便直接在学位论文中复用。因而，请大家关注内容，不要在意形式，这才是使用 \LaTeX{} 模板的意义。
+使用此模板时，须注意：
+必须使用 {XeLaTeX} 进行编译，使用 xelatex -> bibtex -> xelatex -> xelatex，以生成交叉引用及参考文献。
+\keywords{版本控制，模板，内容，形式}
+\end{abstract}
+
+
+
+
+
+
+
+
+
+
+
+\input{sec_intro.tex}
+\input{sec_method.tex}
+\input{sec_results.tex}
+\input{sec_conclusions.tex}
+
+这是一个论文引用的示例\cite{Cui2011}。
+这是多个论文引用的示例\cite{Yang2002,Beck1997,WANG1999}。
+另外，测试一下中文文献的引用\cite{Li2006,Zhang2018}。
+
+\bibliography{../ieee-latex-template-v2/zotero}
+
+\end{document}

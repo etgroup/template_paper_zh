@@ -1,5 +1,5 @@
 % --- Class structure: identification part
-\ProvidesClass{ETpaper}[2020/04/12 v0.09 ETLaTeX Paper class]
+\ProvidesClass{etpaper}[2020/04/12 v0.09 ETLaTeX Paper class]
 \NeedsTeXFormat{LaTeX2e} 
 
 \RequirePackage{kvoptions}
@@ -362,7 +362,7 @@
 	keywordstyle=\color{winered},
 	frame=tlbr,framesep=4pt,framerule=0pt,
 	commentstyle=\color{commentcolor},
-	emph={ETpaper,fontenc,fontspec,xeCJK,FiraMono,xunicode,newtxmath,figure,fig,image,img,table,itemize,enumerate,newtxtext,newtxtt,ctex,microtype,description,times,newtx,booktabs,tabular,PDFLaTeX,XeLaTeX,type1cm,BibTeX,cite,gbt7714,lang},
+	emph={etpaper,fontenc,fontspec,xeCJK,FiraMono,xunicode,newtxmath,figure,fig,image,img,table,itemize,enumerate,newtxtext,newtxtt,ctex,microtype,description,times,newtx,booktabs,tabular,PDFLaTeX,XeLaTeX,type1cm,BibTeX,cite,gbt7714,lang},
 	emphstyle={\color{frenchplum}},
 	morekeywords={DeclareSymbolFont,SetSymbolFont,toprule,midrule,bottomrule,institute,version,includegraphics,setmainfont,setsansfont,setmonofont ,setCJKmainfont,setCJKsansfont,setCJKmonofont,RequirePackage,figref,tabref,email,maketitle,keywords,zhdate,zhtoday},
 	tabsize=2,
