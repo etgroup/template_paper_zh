@@ -1,18 +1,13 @@
-% Author: Dongsheng Deng
-% Homepage: https://ddswhu.me/
-% Email: elegantlatex2e@gmail.com
-% Lastest Version: https://github.com/ElegantLaTeX/ElegantPaper
-
 % --- Class structure: identification part
-\ProvidesClass{elegantpaper}[2020/04/12 v0.09 ElegantLaTeX Paper class]
+\ProvidesClass{ETpaper}[2020/04/12 v0.09 ETLaTeX Paper class]
 \NeedsTeXFormat{LaTeX2e} 
 
 \RequirePackage{kvoptions}
 \RequirePackage{etoolbox}
 \RequirePackage{calc}
 
-\SetupKeyvalOptions{family=ELEGANT, prefix=ELEGANT@, setkeys=\kvsetkeys}
-\newcommand{\ekv}[1]{\kvsetkeys{ELEGANT}{#1}}
+\SetupKeyvalOptions{family=ET, prefix=ET@, setkeys=\kvsetkeys}
+\newcommand{\ekv}[1]{\kvsetkeys{ET}{#1}}
 
 \DeclareStringOption[en]{lang}
 \DeclareVoidOption{cn}{\ekv{lang=cn}}
@@ -30,6 +25,9 @@
 \DeclareStringOption[ctexfont]{chinesefont}
 \DeclareVoidOption{ctexfont}{\ekv{chinesefont=ctexfont}}
 \DeclareVoidOption{founder}{\ekv{chinesefont=founder}}
+\DeclareVoidOption{macos}{\ekv{chinesefont=macos}}
+\DeclareVoidOption{win10}{\ekv{chinesefont=win10}}
+
 \DeclareVoidOption{nofont}{\ekv{chinesefont=nofont}}
 
 \DeclareVoidOption{newtx}{\ekv{math=newtx}}
@@ -102,9 +100,9 @@
 % font settings
 
 \PassOptionsToPackage{no-math}{fontspec}
-\ifdefstring{\ELEGANT@lang}{cn}{
+\ifdefstring{\ET@lang}{cn}{
   \ifXeTeX
-    \ifdefstring{\ELEGANT@chinesefont}{founder}{
+    \ifdefstring{\ET@chinesefont}{founder}{
       \RequirePackage[UTF8,scheme=plain,fontset=none]{ctex}
       \setCJKmainfont[BoldFont={FZHei-B01},ItalicFont={FZKai-Z03}]{FZShuSong-Z01}
       \setCJKsansfont[BoldFont={FZHei-B01},ItalicFont={FZHei-B01}]{FZHei-B01}
@@ -118,13 +116,43 @@
       \newcommand*{\kaishu}{\CJKfamily{zhkai}}
       \newcommand*{\fangsong}{\CJKfamily{zhfs}}}{\relax}
     
-    \ifdefstring{\ELEGANT@chinesefont}{nofont}{
+
+      
+    \ifdefstring{\ET@chinesefont}{macos}{
+      \RequirePackage[UTF8,scheme=plain,fontset=none]{ctex}
+      \setCJKmainfont[BoldFont={STHeitiSC-Light},ItalicFont={STKaitiSC-Regular}]{STSongti-SC-Regular}
+      \setCJKsansfont[BoldFont={SIL-Hei-Med-Jian},ItalicFont={SIL-Hei-Med-Jian}]{SIL-Hei-Med-Jian}
+      \setCJKmonofont[BoldFont={SIL-Hei-Med-Jian},ItalicFont={SIL-Hei-Med-Jian}]{STFangsong}
+      \setCJKfamilyfont{zhsong}{STSongti-SC-Regular}
+      \setCJKfamilyfont{zhhei}{SIL-Hei-Med-Jian}
+      \setCJKfamilyfont{zhkai}{STKaitiSC-Regular}
+      \setCJKfamilyfont{zhfs}{STFangsong}
+      \newcommand*{\songti}{\CJKfamily{zhsong}}
+      \newcommand*{\heiti}{\CJKfamily{zhhei}}
+      \newcommand*{\kaishu}{\CJKfamily{zhkai}}
+      \newcommand*{\fangsong}{\CJKfamily{zhfs}}}{\relax}
+
+    \ifdefstring{\ET@chinesefont}{win10}{
+      \RequirePackage[UTF8,scheme=plain,fontset=none]{ctex}
+      \setCJKmainfont[BoldFont={SimHei},ItalicFont={KaiTi}]{SimSun}
+      \setCJKsansfont[BoldFont={Microsoft YaHei-Regular},ItalicFont={Microsoft YaHei-Regular}]{Microsoft YaHei-Regular}
+      \setCJKmonofont[BoldFont={Microsoft YaHei-Regular},ItalicFont={Microsoft YaHei-Regular}]{FangSong}
+      \setCJKfamilyfont{zhsong}{SimSun}
+      \setCJKfamilyfont{zhhei}{Microsoft YaHei-Regular}
+      \setCJKfamilyfont{zhkai}{KaiTi}
+      \setCJKfamilyfont{zhfs}{FangSong}
+      \newcommand*{\songti}{\CJKfamily{zhsong}}
+      \newcommand*{\heiti}{\CJKfamily{zhhei}}
+      \newcommand*{\kaishu}{\CJKfamily{zhkai}}
+      \newcommand*{\fangsong}{\CJKfamily{zhfs}}}{\relax}      
+
+    \ifdefstring{\ET@chinesefont}{nofont}{
       \RequirePackage[UTF8,scheme=plain,fontset=none]{ctex}}{\relax}
 
-    \ifdefstring{\ELEGANT@chinesefont}{ctexfont}{
+    \ifdefstring{\ET@chinesefont}{ctexfont}{
       \RequirePackage[UTF8,scheme=plain]{ctex}}{\relax}
   \else
-    \ifdefstring{\ELEGANT@chinesefont}{ctexfont}{
+    \ifdefstring{\ET@chinesefont}{ctexfont}{
       \RequirePackage[UTF8,scheme=plain]{ctex}}{\relax}
   \fi
   \AfterEndPreamble{
@@ -149,7 +177,7 @@
 \fi
 
 \RequirePackage{newtxtext}
-\ifdefstring{\ELEGANT@math}{newtx}{
+\ifdefstring{\ET@math}{newtx}{
   \RequirePackage{newtxmath}
   \let\Bbbk\relax
   \RequirePackage{esint}
@@ -170,7 +198,7 @@
 
 \RequirePackage{appendix}
 
-\ifdefstring{\ELEGANT@lang}{cn}{
+\ifdefstring{\ET@lang}{cn}{
   \theoremstyle{plain}% default
   \newtheorem{theorem}{定理}[section] %
   \newtheorem{lemma}[theorem]{引理} %
@@ -199,15 +227,15 @@
   \newcommand\figref[1]{{\bfseries 图~\ref{#1}}}
   \newcommand\tabref[1]{{\bfseries 表~\ref{#1}}}
   \RequirePackage{gbt7714}
-  \ifdefstring{\ELEGANT@cite}{authoryear}{
+  \ifdefstring{\ET@cite}{authoryear}{
     \bibliographystyle{gbt7714-author-year}}{
     \bibliographystyle{gbt7714-numerical}}
-  \ifdefstring{\ELEGANT@cite}{numbers}{
+  \ifdefstring{\ET@cite}{numbers}{
     \citestyle{numbers}}{\relax}
   \renewcommand{\appendixtocname}{附录}
   \renewcommand{\appendixpagename}{附录}}{\relax}
 
-\ifdefstring{\ELEGANT@lang}{en}{
+\ifdefstring{\ET@lang}{en}{
   \theoremstyle{plain}% default
   \newtheorem{theorem}{Theorem}[section] %
   \newtheorem{lemma}[theorem]{Lemma} %
@@ -230,8 +258,8 @@
   \newcommand{\keywords}[1]{\vskip 2ex\par\noindent\normalfont{\bfseries Keywords: } #1}
   \newcommand\figref[1]{{\bfseries Figure~\ref{#1}}}
   \newcommand\tabref[1]{{\bfseries Table~\ref{#1}}}
-  \RequirePackage[\ELEGANT@cite,sort&compress]{natbib}
-  \bibliographystyle{\ELEGANT@bibstyle}}{\relax}
+  \RequirePackage[\ET@cite,sort&compress]{natbib}
+  \bibliographystyle{\ET@bibstyle}}{\relax}
 
 \setlength{\bibsep}{0.0pt}
 \def\bibfont{\footnotesize}
@@ -279,14 +307,14 @@
   \global\let\@maketitle\relax
   \global\let\@thanks\@empty
   \global\let\@author\@empty
-  \global\let\@ELEGANT@version\@empty
+  \global\let\@ET@version\@empty
   \global\let\@date\@empty
   \global\let\@title\@empty
   \global\let\title\relax
   \global\let\author\relax
   \global\let\date\relax
   \global\let\and\relax
-  \global\let\ELEGANT@version\relax
+  \global\let\ET@version\relax
 }
 \def\@maketitle{%
   \newpage
@@ -334,7 +362,7 @@
 	keywordstyle=\color{winered},
 	frame=tlbr,framesep=4pt,framerule=0pt,
 	commentstyle=\color{commentcolor},
-	emph={elegantpaper,fontenc,fontspec,xeCJK,FiraMono,xunicode,newtxmath,figure,fig,image,img,table,itemize,enumerate,newtxtext,newtxtt,ctex,microtype,description,times,newtx,booktabs,tabular,PDFLaTeX,XeLaTeX,type1cm,BibTeX,cite,gbt7714,lang},
+	emph={ETpaper,fontenc,fontspec,xeCJK,FiraMono,xunicode,newtxmath,figure,fig,image,img,table,itemize,enumerate,newtxtext,newtxtt,ctex,microtype,description,times,newtx,booktabs,tabular,PDFLaTeX,XeLaTeX,type1cm,BibTeX,cite,gbt7714,lang},
 	emphstyle={\color{frenchplum}},
 	morekeywords={DeclareSymbolFont,SetSymbolFont,toprule,midrule,bottomrule,institute,version,includegraphics,setmainfont,setsansfont,setmonofont ,setCJKmainfont,setCJKsansfont,setCJKmonofont,RequirePackage,figref,tabref,email,maketitle,keywords,zhdate,zhtoday},
 	tabsize=2,
