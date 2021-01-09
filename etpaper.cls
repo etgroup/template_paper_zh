@@ -100,6 +100,7 @@
 % font settings
 
 \PassOptionsToPackage{no-math}{fontspec}
+\RequirePackage{iftex}
 \ifdefstring{\ET@lang}{cn}{
   \ifXeTeX
     \ifdefstring{\ET@chinesefont}{founder}{
@@ -117,7 +118,6 @@
       \newcommand*{\fangsong}{\CJKfamily{zhfs}}}{\relax}
     
 
-      
     \ifdefstring{\ET@chinesefont}{macos}{
       \RequirePackage[UTF8,scheme=plain,fontset=none]{ctex}
       \setCJKmainfont[BoldFont={STHeitiSC-Light},ItalicFont={STKaitiSC-Regular}]{STSongti-SC-Regular}
